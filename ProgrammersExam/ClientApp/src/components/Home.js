@@ -44,10 +44,12 @@ class Home extends React.Component {
           type: "success"
         });
       } else reactSwal.fire("Info", `Error while registering order.`, "error");
-      this.setState({ disabled: false });
       console.log(result);
     } catch (error) {
       reactSwal.fire("Info", `Error while registering order.`, "error")
+    }
+    finally{
+      this.setState({ disabled: false });
     }
   };
 
@@ -86,6 +88,7 @@ class Home extends React.Component {
             <input
               name="audience"
               type="number"
+              min="1"
               className="form-control"
               value={this.state.audience}
               onChange={this.onChange}

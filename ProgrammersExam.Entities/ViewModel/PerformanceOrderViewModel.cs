@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using ProgrammersExam.Entities.Entity.Abstract;
 
 namespace ProgrammersExam.Entities.ViewModel
@@ -7,7 +8,7 @@ namespace ProgrammersExam.Entities.ViewModel
     {
         [Required]
         public int PlayId { get; set; }
-        [Required]
+        [Required, Range(1, int.MaxValue)]
         public int Audience { get; set; }
         [Required]
         public string Name { get; set; }
