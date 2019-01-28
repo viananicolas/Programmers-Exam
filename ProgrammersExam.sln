@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.329
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProgrammersExam", "ProgrammersExam\ProgrammersExam.csproj", "{14E8FF6C-8A3C-44B9-9927-87F524C4CCE0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProgrammersExam", "ProgrammersExam\ProgrammersExam.csproj", "{14E8FF6C-8A3C-44B9-9927-87F524C4CCE0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProgrammersExam.Data", "ProgrammersExam.Data\ProgrammersExam.Data.csproj", "{D14827F3-CD57-4C6F-82B6-F6E99D7DF5D3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProgrammersExam.Entities", "ProgrammersExam.Entities\ProgrammersExam.Entities.csproj", "{4FB0098E-7F92-4299-B670-5C3F5686E34B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{14E8FF6C-8A3C-44B9-9927-87F524C4CCE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{14E8FF6C-8A3C-44B9-9927-87F524C4CCE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{14E8FF6C-8A3C-44B9-9927-87F524C4CCE0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D14827F3-CD57-4C6F-82B6-F6E99D7DF5D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D14827F3-CD57-4C6F-82B6-F6E99D7DF5D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D14827F3-CD57-4C6F-82B6-F6E99D7DF5D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D14827F3-CD57-4C6F-82B6-F6E99D7DF5D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4FB0098E-7F92-4299-B670-5C3F5686E34B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4FB0098E-7F92-4299-B670-5C3F5686E34B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4FB0098E-7F92-4299-B670-5C3F5686E34B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4FB0098E-7F92-4299-B670-5C3F5686E34B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

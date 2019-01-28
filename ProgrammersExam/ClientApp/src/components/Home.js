@@ -1,23 +1,127 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React from "react";
+import { connect } from "react-redux";
+import InputMask from "react-input-mask";
+import { getPlays, handleSubmit } from "../actions";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
-const Home = props => (
-  <div>
-    <h1>Hello, world!</h1>
-    <p>Welcome to your new single-page application, built with:</p>
-    <ul>
-      <li><a href='https://get.asp.net/'>ASP.NET Core</a> and <a href='https://msdn.microsoft.com/en-us/library/67ef8sbd.aspx'>C#</a> for cross-platform server-side code</li>
-      <li><a href='https://facebook.github.io/react/'>React</a> and <a href='https://redux.js.org/'>Redux</a> for client-side code</li>
-      <li><a href='http://getbootstrap.com/'>Bootstrap</a> for layout and styling</li>
-    </ul>
-    <p>To help you get started, we've also set up:</p>
-    <ul>
-      <li><strong>Client-side navigation</strong>. For example, click <em>Counter</em> then <em>Back</em> to return here.</li>
-      <li><strong>Development server integration</strong>. In development mode, the development server from <code>create-react-app</code> runs in the background automatically, so your client-side resources are dynamically built on demand and the page refreshes when you modify any file.</li>
-      <li><strong>Efficient production builds</strong>. In production mode, development-time features are disabled, and your <code>dotnet publish</code> configuration produces minified, efficiently bundled JavaScript files.</li>
-    </ul>
-    <p>The <code>ClientApp</code> subdirectory is a standard React application based on the <code>create-react-app</code> template. If you open a command prompt in that directory, you can run <code>npm</code> commands such as <code>npm test</code> or <code>npm install</code>.</p>
-  </div>
-);
+const reactSwal = withReactContent(Swal);
 
-export default connect()(Home);
+class Home extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      play: "",
+      plays: [],
+      name: "",
+      telephone: "",
+      email: "",
+      audience: 1,
+      disabled: false
+    };
+  }
+  onChange = event => {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  };
+  componentWillMount = async () => {
+    let plays = await getPlays();
+    console.log(plays);
+    this.setState({ plays });
+  };
+  submitForm = async event => {
+    this.setState({disabled: true});
+    let result = await handleSubmit(event);
+    if (result.status === 200) {
+      this.setState({name: "", telephone: "", email: "", audience: 1})
+      reactSwal.fire({
+        title: "Info",
+        html: `Successfully registered order. Total: ${result.data.totalPrice}`,
+        type: "success"
+      });
+      
+    } else reactSwal.fire("Info", `Error while registering order.`, "error");
+    this.setState({disabled: false});
+    console.log(result);
+  };
+
+  renderPlays = data => {
+    if (data) {
+      return (
+        <div>
+          <label htmlFor="playId">Select Play</label>
+          <select
+            name="playId"
+            value={this.state.play}
+            onChange={this.onChange}
+            className="form-control"
+          >
+            {data.map((play, key) => {
+              return (
+                <option key={play.id} value={play.id}>
+                  {play.playName}
+                </option>
+              );
+            })}
+          </select>
+        </div>
+      );
+    }
+    return <div />;
+  };
+
+  render() {
+    return (
+      <div>
+        <form onSubmit={event => this.submitForm(event, this.state)}>
+          {this.renderPlays(this.state.plays)}
+          <div className="form-group">
+            <label htmlFor="audience">Enter Audience</label>
+            <input
+              name="audience"
+              type="number"
+              className="form-control"
+              value={this.state.audience}
+              onChange={this.onChange}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="name">Enter Name</label>
+            <input
+              name="name"
+              type="text"
+              className="form-control"
+              value={this.state.name}
+              onChange={this.onChange}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="email">Enter Email</label>
+            <input
+              name="email"
+              type="email"
+              className="form-control"
+              value={this.state.email}
+              onChange={this.onChange}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="telephone">Enter Telephone</label>
+            <InputMask
+              name="telephone"
+              type="tel"
+              mask="(99) 99999-9999"
+              value={this.state.telephone}
+              onChange={this.onChange}
+              className="form-control"
+            />
+          </div>
+          <input type="submit" value="Submit" className="btn btn-primary" disabled = {(this.state.disabled)? "disabled" : ""} />
+        </form>
+      </div>
+    );
+  }
+}
+
+export default connect(state => state.weatherForecasts)(Home);
