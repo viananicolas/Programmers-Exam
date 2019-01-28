@@ -1,7 +1,6 @@
 # Programmers-Exam
 
 Project: http://programmersexam.azurewebsites.net/
-API: http://programmersexam.azurewebsites.net/api/
 
 # Technologies
 .NET Core 2.2
