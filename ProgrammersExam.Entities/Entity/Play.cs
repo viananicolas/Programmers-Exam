@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
-using ProgrammersExam.Entities.Defaults;
 using ProgrammersExam.Entities.Entity.Abstract;
 using ProgrammersExam.Entities.Enum;
 

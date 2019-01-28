@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using AutoMapper;
-using ProgrammersExam.Data.Service.Base;
 using ProgrammersExam.Data.Service.Base.Interface;
 using ProgrammersExam.Data.UnitOfWork.Interface;
 using ProgrammersExam.Entities.Entity;

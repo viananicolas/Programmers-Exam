@@ -1,6 +1,4 @@
 ﻿using AutoMapper;
-using ProgrammersExam.Data.StaticMethods;
-using ProgrammersExam.Data.UnitOfWork.Interface;
 using ProgrammersExam.Entities.Entity;
 using ProgrammersExam.Entities.ViewModel;
 

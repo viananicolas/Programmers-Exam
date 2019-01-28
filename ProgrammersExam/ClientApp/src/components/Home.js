@@ -31,19 +31,24 @@ class Home extends React.Component {
     this.setState({ plays });
   };
   submitForm = async event => {
-    this.setState({disabled: true});
-    let result = await handleSubmit(event);
-    if (result.status === 200) {
-      this.setState({name: "", telephone: "", email: "", audience: 1})
-      reactSwal.fire({
-        title: "Info",
-        html: `Successfully registered order. Total: ${result.data.totalPrice}`,
-        type: "success"
-      });
-      
-    } else reactSwal.fire("Info", `Error while registering order.`, "error");
-    this.setState({disabled: false});
-    console.log(result);
+    try {
+      this.setState({ disabled: true });
+      let result = await handleSubmit(event);
+      if (result.status === 200) {
+        this.setState({ name: "", telephone: "", email: "", audience: 1 });
+        reactSwal.fire({
+          title: "Info",
+          html: `Successfully registered order. Total: ${
+            result.data.totalPrice
+          }`,
+          type: "success"
+        });
+      } else reactSwal.fire("Info", `Error while registering order.`, "error");
+      this.setState({ disabled: false });
+      console.log(result);
+    } catch (error) {
+      reactSwal.fire("Info", `Error while registering order.`, "error")
+    }
   };
 
   renderPlays = data => {
@@ -117,7 +122,12 @@ class Home extends React.Component {
               className="form-control"
             />
           </div>
-          <input type="submit" value="Submit" className="btn btn-primary" disabled = {(this.state.disabled)? "disabled" : ""} />
+          <input
+            type="submit"
+            value="Submit"
+            className="btn btn-primary"
+            disabled={this.state.disabled ? "disabled" : ""}
+          />
         </form>
       </div>
     );
